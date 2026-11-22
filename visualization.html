@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>📊 Visualization</h1>
+{% if error %}<div class="alert alert-warning">{{error}}</div>{% elif counts %}
+<p>Detected target column: <b>{{target}}</b></p>
+<canvas id="fraudChart"></canvas>
+<script>
+new Chart(document.getElementById("fraudChart"), {
+ type:"bar",
+ data:{labels: {{ counts.labels|tojson }}, datasets:[{label:"Number of records",data:{{ counts.values|tojson }}}]},
+ options:{responsive:true}
+});
+</script>
+{% else %}
+<div class="alert alert-info">No recognized target column was found for the chart.</div>
+{% endif %}
+</div>
+{% endblock %}

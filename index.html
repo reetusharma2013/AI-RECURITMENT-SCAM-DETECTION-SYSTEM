@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+<div>
+<span class="badge rounded-pill">AI + MACHINE LEARNING + NLP</span>
+<h1>AI Recruitment<br><span>Scam Detection</span></h1>
+<p>Analyze job postings and identify potentially fraudulent recruitment advertisements using NLP and machine learning.</p>
+<a href="/detect" class="btn btn-light btn-lg me-2">🔍 Check Job</a>
+<a href="/upload" class="btn btn-outline-light btn-lg">📂 Upload Dataset</a>
+</div>
+<div class="shield">🛡️</div>
+</section>
+
+<div class="row g-4 mt-3">
+{% for icon,title,text,link in [
+("📂","Upload Data","Upload your recruitment dataset in CSV format.","/upload"),
+("⚙️","Preprocess","Clean missing values, duplicates and job-posting text.","/preprocess"),
+("📊","Visualization","Explore fraud distribution and dataset statistics.","/visualization"),
+("🤖","Train Model","Train ML models and automatically select the best one.","/train"),
+("🔎","Detect Scam","Enter a job posting and get an AI prediction.","/detect"),
+("📈","Results","View accuracy, precision, recall and F1-score.","/results")
+] %}
+<div class="col-md-4"><div class="feature-card"><div class="icon">{{icon}}</div><h3>{{title}}</h3><p>{{text}}</p><a href="{{link}}">Open →</a></div></div>
+{% endfor %}
+</div>
+{% endblock %}

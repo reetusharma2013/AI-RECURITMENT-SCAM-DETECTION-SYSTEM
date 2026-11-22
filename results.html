@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>📈 Model Results</h1>
+{% if result and not result.error %}
+<div class="alert alert-info">Best Model: <b>{{result.best_model}}</b></div>
+<table class="table table-hover">
+<thead><tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead>
+<tbody>
+{% for name,m in result.results.items() %}
+<tr><td>{{name}}</td><td>{{m.accuracy}}%</td><td>{{m.precision}}%</td><td>{{m.recall}}%</td><td>{{m.f1}}%</td></tr>
+{% endfor %}
+</tbody>
+</table>
+<p>Training rows: {{result.training_rows}} | Testing rows: {{result.testing_rows}}</p>
+{% else %}
+<div class="alert alert-warning">No trained model results yet. Upload a dataset and train the model.</div>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>📂 Upload Dataset</h1>
+<p>Upload a CSV file containing job-posting data.</p>
+<form method="POST" enctype="multipart/form-data">
+<input class="form-control form-control-lg" type="file" name="dataset" accept=".csv" required>
+<button class="btn btn-primary btn-lg mt-3">Upload Dataset</button>
+</form>
+<div class="hint mt-4">Recommended target-column names: <b>fraudulent</b>, <b>fake</b>, <b>label</b>, <b>target</b>, <b>scam</b> or <b>class</b>.</div>
+</div>
+{% endblock %}

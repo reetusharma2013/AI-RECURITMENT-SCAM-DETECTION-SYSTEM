@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>🔍 Detect Recruitment Scam</h1>
+<p>Enter the details of a job posting.</p>
+<form method="POST">
+<input class="form-control mb-3" name="title" placeholder="Job Title">
+<input class="form-control mb-3" name="company_profile" placeholder="Company Profile">
+<textarea class="form-control mb-3" name="description" rows="6" placeholder="Job Description"></textarea>
+<textarea class="form-control mb-3" name="requirements" rows="4" placeholder="Requirements"></textarea>
+<textarea class="form-control mb-3" name="benefits" rows="3" placeholder="Benefits"></textarea>
+<button class="btn btn-primary btn-lg w-100">🔎 Analyze Job Posting</button>
+</form>
+{% if prediction %}
+{% if prediction.error %}<div class="alert alert-danger mt-4">{{prediction.error}}</div>
+{% else %}
+<div class="prediction mt-4 {% if prediction.risk == 'HIGH' %}danger-box{% else %}safe-box{% endif %}">
+<h2>{{prediction.label}}</h2>
+<p>Risk Level: <b>{{prediction.risk}}</b></p>
+{% if prediction.confidence %}<p>Model Confidence: <b>{{prediction.confidence}}%</b></p>{% endif %}
+</div>
+{% endif %}
+{% endif %}
+</div>
+{% endblock %}

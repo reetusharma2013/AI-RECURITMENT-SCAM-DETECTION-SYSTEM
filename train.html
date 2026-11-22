@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>🤖 Train Model</h1>
+<p>The system trains Logistic Regression and Random Forest using TF-IDF text features.</p>
+<form method="POST"><button class="btn btn-success btn-lg">🚀 Train AI Models</button></form>
+{% if result %}
+{% if result.error %}<div class="alert alert-danger mt-4">{{result.error}}</div>
+{% else %}
+<div class="alert alert-success mt-4">Training completed. Best model: <b>{{result.best_model}}</b></div>
+<div class="row g-3">
+{% for name, m in result.results.items() %}
+<div class="col-md-6"><div class="model-card"><h3>{{name}}</h3><p>Accuracy: <b>{{m.accuracy}}%</b></p><p>Precision: {{m.precision}}% &nbsp; Recall: {{m.recall}}% &nbsp; F1: {{m.f1}}%</p></div></div>
+{% endfor %}
+</div>
+{% endif %}
+{% endif %}
+</div>
+{% endblock %}

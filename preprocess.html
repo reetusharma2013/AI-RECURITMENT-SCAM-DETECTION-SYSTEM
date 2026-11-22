@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-card">
+<h1>⚙️ Data Preprocessing</h1>
+{% if error %}<div class="alert alert-warning">{{error}}</div>{% endif %}
+{% if info %}
+<div class="row g-3">
+<div class="col-md-3"><div class="stat"><b>{{info.rows}}</b><span>Rows</span></div></div>
+<div class="col-md-3"><div class="stat"><b>{{info.columns}}</b><span>Columns</span></div></div>
+<div class="col-md-3"><div class="stat"><b>{{info.missing}}</b><span>Missing cells</span></div></div>
+<div class="col-md-3"><div class="stat"><b>{{info.duplicates}}</b><span>Duplicates</span></div></div>
+</div>
+<h4 class="mt-4">Columns</h4>
+<p>{% for c in info.column_names %}<span class="column-pill">{{c}}</span>{% endfor %}</p>
+<form method="POST" action="/run-preprocess"><button class="btn btn-primary">Run Preprocessing</button></form>
+{% endif %}
+</div>
+{% endblock %}
